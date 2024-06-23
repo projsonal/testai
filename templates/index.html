@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat AI-cobain</title>
+</head>
+<body>
+    <h1>chatingan dengan ai, jadi kamu ga kesepian lagi</h1>
+    <form id="chat-form">
+        <input type="text" id="user-input" name="user_input" placeholder="Type your message...">
+        <button type="submit">Send</button>
+    </form>
+    <div id="chat-response"></div>
+
+    <script>
+        document.getElementById('chat-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let userInput = document.getElementById('user-input').value;
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_input: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('chat-response').innerText = data.response;
+            });
+        });
+    </script>
+</body>
+</html>
