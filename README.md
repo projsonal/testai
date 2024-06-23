@@ -1,0 +1,2 @@
+# testai
+belajar buat ai
